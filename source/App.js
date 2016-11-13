@@ -1,16 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Header from './components/Header.js'
 
-class Hello extends React.Component{
+class ToDoList extends React.Component{
 	constructor(props){
 		super(props);
 	}
 
 	render(){
 		return (
-			<h1> Hello World </h1>
+			<div>
+				<Header title="List"/>
+			</div>
 		)
 	}
 }
 
-ReactDOM.render(<Hello/>, document.getElementById('root'));
+ReactDOM.render(<ToDoList/>, document.getElementById('root'));
