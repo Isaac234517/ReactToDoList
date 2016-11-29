@@ -1,0 +1,26 @@
+#header{
+	width:50%;
+}
+
+#header ul{
+	list-style: none;
+}
+
+#header ul li{
+	display: inline-block;
+	margin-right: 10%;
+}
+
+#header p{
+	margin-bottom:3px;
+}
+
+.create{
+	/*border: 2px solid green;*/
+	background: url("../images/create.png") no-repeat;
+	border: solid none;
+	height: 26px;
+	margin:0;
+	width: 26px;
+	cursor: pointer;
+}

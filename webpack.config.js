@@ -8,11 +8,10 @@ module.exports ={
 	},
 	module:{
 		loaders:[
-		 {
-			test: /\.jsx?$/,
-			exclude: /node_modules/,
-			loader: 'babel-loader',
-		 }
+		 {  test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader'},
+		 { test: /\.css$/, loader: "style-loader!css-loader" },
+      	 { test: /\.(png|jpg)$/, loader: "url-loader?limit=100000" },
+         { test: /\.jpg$/, loader: "file-loader" }
 		]
 	},
 	devServer:{
