@@ -1,4 +1,4 @@
-#create-task-name{
+.create-task-name{
 	border: 0;
 	background: transparent;
 	border-bottom: 2px solid black;
@@ -8,5 +8,18 @@
 
 .show-area{
 	margin-left: 3%;
-	width: 50%;
+	width: 100%;
+	font-size: 1em;
+}
+
+.show-area ul{
+	list-style: none;
+}
+
+.show-area li{
+	margin-top :4%;
+}
+
+.show-area input[type="text"]{
+	width: 60%;
 }

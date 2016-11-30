@@ -20,7 +20,7 @@ class Header extends React.Component{
 			this.setState({buttonState: "back"});
 		}
 		else{
-			console.log("Others");
+			//console.log("Others");
 		}
 		this.timeID = setInterval(()=>{
 			this.tick()
@@ -39,7 +39,7 @@ class Header extends React.Component{
 			   <p>{this.getWeekDay()}</p>
 			   <p>{this.state.date.toLocaleDateString()} {this.state.date.toLocaleTimeString()}</p>
 			   </li>
-			   <li><h1>{this.props.title}</h1></li>
+			   <li><h2>{this.props.title}</h2></li>
 			   <li><Link to={this.props.path}><button className={this.state.buttonState}></button></Link></li>
 			 </ul>
 			</div>

@@ -1,14 +1,16 @@
 #header{
-	width:50%;
+	width:100%;
+	font-size: 1em;
 }
 
 #header ul{
 	list-style: none;
+	margin-left: -1%;
 }
 
 #header ul li{
 	display: inline-block;
-	margin-right: 10%;
+	margin-right: 6%;
 }
 
 #header p{
@@ -20,7 +22,7 @@
 	background: url("../images/create.png") no-repeat;
 	border: solid none;
 	height: 26px;
-	margin:0;
+	margin-left: 40%;
 	width: 26px;
 	cursor: pointer;
 }
