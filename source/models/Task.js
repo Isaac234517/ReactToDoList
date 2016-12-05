@@ -1,16 +1,20 @@
 class Task{
-  constructor(name,items){
+  constructor(name,subTasks){
   	this.name = name
-  	this.items = items
-  	this.itemAmount = items.length;
+  	this.subTasks = subTasks
+  	this.subTasksAmount= subTasks.length;
   }
 
   getName(){
   	return this.name
   }
 
-  getItems(){
-  	return this.items;
+  getSubTasks(){
+  	return this.subTasks;
+  }
+
+  addSubTask(name){
+    this.subTasks.push(name);
   }
 }
 

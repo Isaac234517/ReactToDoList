@@ -14,7 +14,7 @@ class ToDoList extends React.Component{
 	render(){
 		return (
 			<div>
-				<Header title="List" fn="home" path="/CreateTaskPage" />
+				<Header title="List" fn="create" path="/CreateTaskPage" />
 				<TaskArea tasks={[new Task("Assignment", []),
 								  new Task("Assignment 2", [])
 								  ]} />

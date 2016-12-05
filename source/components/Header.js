@@ -7,27 +7,17 @@ class Header extends React.Component{
 		super(props);
 		this.state={
 			date: new Date(),
-			weekyDate: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
-			buttonState:""
+			weekyDate: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
 			}
 	}
 
 	componentDidMount(){
-		if(this.props.fn === "home"){
-			this.setState({buttonState: "create"})
-		}
-		else if (this.props.fn ==="create") {
-			this.setState({buttonState: "back"});
-		}
-		else{
-			//console.log("Others");
-		}
 		this.timeID = setInterval(()=>{
 			this.tick()
 		},1000);
 	}
 
-	componentWillMount() {
+	componentWillUnMount() {
 		clearInterval(this.timeID);
 	}
 
@@ -40,7 +30,7 @@ class Header extends React.Component{
 			   <p>{this.state.date.toLocaleDateString()} {this.state.date.toLocaleTimeString()}</p>
 			   </li>
 			   <li><h2>{this.props.title}</h2></li>
-			   <li><Link to={this.props.path}><button className={this.state.buttonState}></button></Link></li>
+			   <li><Link to={this.props.path}><button className={this.props.fn}></button></Link></li>
 			 </ul>
 			</div>
 		)
