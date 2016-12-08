@@ -1,30 +1,44 @@
 import React from 'react';
 import Header from './Header.js';
-import Task from "../models/Task.js";
+import Tasks from "../models/Tasks.js";
 require ('../css/general.css');
 
 class CreateTaskPage extends React.Component{
 	constructor(props){
 		super(props);
-		this.state ={ task: new Task("", []) }
+		this.state ={ tasks: new Tasks("", []) }
 		this.createSubTask = this.createSubTask.bind(this);
 		this.onSubTaskTextChange = this.onSubTaskTextChange.bind(this);
 		this.onTaskNameChange = this.onTaskNameChange.bind(this);
+		this.saveTask = this.saveTask.bind(this);
 	}
 
 	createSubTask(){
-		var task = this.state.task;
-		task.addSubTask("");
-		this.setState({task: task});
+		var tasks = this.state.tasks;
+		tasks.addSubTask("");
+		this.setState({tasks: tasks});
 	}
 
 	onSubTaskTextChange(event){
 		var index = event.target.parentNode.getAttribute("data-index");
-		this.state.task.subTasks[index] = event.target.value;
+		this.state.tasks.subTasks[index] = event.target.value;
 	}
 
 	onTaskNameChange(event){
-		this.state.task.name = event.target.value;
+		this.state.tasks.name = event.target.value;
+	}
+
+	saveTask(){
+		var tasks = window.localStorage.getItem("tasks");
+		if(tasks === null){
+			tasks = []
+		}
+		else{
+			tasks = JSON.parse(tasks);
+		}
+		tasks.push(this.state.tasks);
+		window.localStorage.setItem("tasks", JSON.stringify(tasks));
+		window.location.href ="/";
 	}
 
 	render(){
@@ -36,12 +50,12 @@ class CreateTaskPage extends React.Component{
 			  	<button type="button" onClick={this.createSubTask}>create sub task</button>
 			  	<ul>
 			  	{
-			  		this.state.task.subTasks.map((item, index)=>{
+			  		this.state.tasks.subTasks.map((item, index)=>{
 			  			return <li data-index={index} key={index} ><input type="text" className="create-task-name" onChange={this.onSubTaskTextChange}></input></li>
 			  		})
 			  	}
 			  	</ul>
-			  	<button type="button">Create Task</button>
+			  	<button type="button" onClick={this.saveTask}>Create Task</button>
 			  </div>
 			</div>
 		)

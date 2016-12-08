@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {Router, Route, Link, hashHistory} from 'react-router';
 import Header from './components/Header.js'
 import TaskArea from './components/TaskArea.js'
-import Task from './models/Task.js'
+import Tasks from './models/Tasks.js'
 import CreateTaskPage from './components/CreateTaskPage.js'
 
 class ToDoList extends React.Component{
@@ -15,9 +15,7 @@ class ToDoList extends React.Component{
 		return (
 			<div>
 				<Header title="List" fn="create" path="/CreateTaskPage" />
-				<TaskArea tasks={[new Task("Assignment", []),
-								  new Task("Assignment 2", [])
-								  ]} />
+				<TaskArea tasks={JSON.parse(window.localStorage.getItem("tasks"))|| []} />
 			</div>
 		)
 	}

@@ -1,4 +1,4 @@
-class Task{
+class Tasks{
   constructor(name,subTasks){
   	this.name = name
   	this.subTasks = subTasks
@@ -18,4 +18,4 @@ class Task{
   }
 }
 
-export default Task
+export default Tasks

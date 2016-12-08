@@ -1,4 +1,5 @@
 import React from 'react';
+import Tasks from "../models/Tasks.js";
 class TaskArea extends React.Component{
 	constructor(props){
 		super(props);
@@ -9,7 +10,9 @@ class TaskArea extends React.Component{
 				<ul>
 					{
 						this.props.tasks.map(function(item,index){
-            				return <li key={index}> {item.getName()} </li>
+							//console.log(index);
+							//console.log(typeof item);
+            				return <li key={index}> {item.name} </li>
           				})
 			  		}
 				</ul>
