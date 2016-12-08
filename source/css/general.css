@@ -23,3 +23,12 @@
 .show-area input[type="text"]{
 	width: 60%;
 }
+
+.tasks-area li{
+	cursor: pointer;
+	list-style: none;
+}
+
+.completed{
+	text-decoration: line-through;
+}

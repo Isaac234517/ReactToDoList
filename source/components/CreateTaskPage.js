@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header.js';
 import Tasks from "../models/Tasks.js";
+import Task from "../models/Task.js";
 require ('../css/general.css');
 
 class CreateTaskPage extends React.Component{
@@ -15,13 +16,13 @@ class CreateTaskPage extends React.Component{
 
 	createSubTask(){
 		var tasks = this.state.tasks;
-		tasks.addSubTask("");
+		tasks.addSubTask(new Task(""));
 		this.setState({tasks: tasks});
 	}
 
 	onSubTaskTextChange(event){
 		var index = event.target.parentNode.getAttribute("data-index");
-		this.state.tasks.subTasks[index] = event.target.value;
+		this.state.tasks.subTasks[index].name = event.target.value;
 	}
 
 	onTaskNameChange(event){

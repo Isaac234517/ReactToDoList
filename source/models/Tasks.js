@@ -1,20 +1,14 @@
-class Tasks{
+import Task from "../models/Task.js"
+class Tasks extends Task {
   constructor(name,subTasks){
-  	this.name = name
+    super(name);
   	this.subTasks = subTasks
   	this.subTasksAmount= subTasks.length;
   }
 
-  getName(){
-  	return this.name
-  }
-
-  getSubTasks(){
-  	return this.subTasks;
-  }
-
   addSubTask(name){
     this.subTasks.push(name);
+    this.subTasksAmount = this.subTasks.length;
   }
 }
 
