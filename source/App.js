@@ -11,17 +11,29 @@ class ToDoList extends React.Component{
 		super(props);
 	}
 
+	getTasksFromLocalStorage(){
+		var objects = JSON.parse(window.localStorage.getItem("tasks"));
+		if(objects === null){
+			return [];
+		}
+		else{
+			var tasks = objects.map(function(obj,index){
+				return Tasks.fromObject(obj);
+			});
+			return tasks;
+		}
+	}
+
 	render(){
 		return (
 			<div>
 				<Header title="List" fn="create" path="/CreateTaskPage" />
-				<TaskArea tasks={JSON.parse(window.localStorage.getItem("tasks"))|| []} />
+				<TaskArea tasks={this.getTasksFromLocalStorage()} />
 			</div>
 		)
 	}
 
 	goToCreateTaskPage(){
-		console.log("Hi")
 		window.location.href="/CreateTaskPage.js"
 	}
 }

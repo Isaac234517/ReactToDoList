@@ -1,6 +1,7 @@
 #header{
 	width:100%;
 	font-size: 1em;
+	text-align:center;
 }
 
 #header ul{
@@ -15,11 +16,13 @@
 
 #header p{
 	margin-bottom:3px;
+	font-weight:bold;
+	font-size:1.3em;
 }
 
 .create{
 	/*border: 2px solid green;*/
-	background: url("../images/create.png") no-repeat;
+	/*background: url("../images/create.png") no-repeat;*/
 	border: solid none;
 	height: 26px;
 	margin-left: 40%;

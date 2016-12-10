@@ -7,7 +7,7 @@ require ('../css/general.css');
 class CreateTaskPage extends React.Component{
 	constructor(props){
 		super(props);
-		this.state ={ tasks: new Tasks("", []) }
+		this.state ={ tasks: new Tasks("", [],false) }
 		this.createSubTask = this.createSubTask.bind(this);
 		this.onSubTaskTextChange = this.onSubTaskTextChange.bind(this);
 		this.onTaskNameChange = this.onTaskNameChange.bind(this);
@@ -16,7 +16,7 @@ class CreateTaskPage extends React.Component{
 
 	createSubTask(){
 		var tasks = this.state.tasks;
-		tasks.addSubTask(new Task(""));
+		tasks.addSubTask(new Task("",false));
 		this.setState({tasks: tasks});
 	}
 
@@ -30,33 +30,35 @@ class CreateTaskPage extends React.Component{
 	}
 
 	saveTask(){
-		var tasks = window.localStorage.getItem("tasks");
-		if(tasks === null){
-			tasks = []
+		if(this.state.tasks.name!=""){
+			var tasks = window.localStorage.getItem("tasks");
+			if(tasks === null){
+				tasks = []
+			}
+			else{
+				tasks = JSON.parse(tasks);
+			}
+			tasks.push(this.state.tasks);
+			window.localStorage.setItem("tasks", JSON.stringify(tasks));
 		}
-		else{
-			tasks = JSON.parse(tasks);
-		}
-		tasks.push(this.state.tasks);
-		window.localStorage.setItem("tasks", JSON.stringify(tasks));
 		window.location.href ="/";
 	}
 
 	render(){
 		return(
 			<div>
-			  <Header title="create" fn="back" path="/"/>
+			  <Header title="Create" fn="back" path="/"/>
 			  <div className="show-area">
 			  	<label htmlFor="create-task-name">Task Name: </label> <input className="create-task-name" type="text" onChange={this.onTaskNameChange}></input>
 			  	<button type="button" onClick={this.createSubTask}>create sub task</button>
 			  	<ul>
 			  	{
 			  		this.state.tasks.subTasks.map((item, index)=>{
-			  			return <li data-index={index} key={index} ><input type="text" className="create-task-name" onChange={this.onSubTaskTextChange}></input></li>
+			  			return <li data-index={index} key={index} >SubTask{index}: <input type="text" className="create-task-name" onChange={this.onSubTaskTextChange}></input></li>
 			  		})
 			  	}
 			  	</ul>
-			  	<button type="button" onClick={this.saveTask}>Create Task</button>
+			  	<button type="button" className="create-task" onClick={this.saveTask}>Create Task</button>
 			  </div>
 			</div>
 		)

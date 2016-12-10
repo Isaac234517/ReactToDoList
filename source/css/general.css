@@ -1,15 +1,17 @@
 .create-task-name{
 	border: 0;
 	background: transparent;
+	border-top: 2px solid black;
 	border-bottom: 2px solid black;
 	width: 30%;
 	outline:0 ;
+	font-size:1em;
 }
 
 .show-area{
-	margin-left: 3%;
-	width: 100%;
+	width: 90%;
 	font-size: 1em;
+	padding-left:3%;
 }
 
 .show-area ul{
@@ -23,12 +25,72 @@
 .show-area input[type="text"]{
 	width: 60%;
 }
+.tasks-area{
+	padding-bottom: 3%;
+	padding-right: 3%;
+}
 
-.tasks-area li{
+.tasks>li{
 	cursor: pointer;
 	list-style: none;
+	font-size: 24px;
+	background: rgba(187, 187, 187, 0.78);
+	transition: all .3s ease;
+  	border-top: 3px solid black;
+  	padding-bottom: 20px;
+  	position:relative;
+  	vertical-align: middle;
+ }
+
+.tasks>li:hover{
+	background: #ddd;
+}
+
+.tasks>li:nth-child(odd){
+  background:rgba(255, 255, 255, 1)
+}
+
+.unfolded{
+	display: block;
+	list-style:none;
+}
+
+.unfolded{
+
+}
+
+.folded{
+	display: none;
 }
 
 .completed{
 	text-decoration: line-through;
+}
+
+.down-arrow{
+	float:right;
+	margin-top:-2%;
+	border:none;
+	background-color:transparent;
+	background-image: url("../images/arrow_down.png");
+	background-size:25px 25px;
+	background-repeat:no-repeat;
+	width:25px;
+	height:25px;
+	cursor:pointer;
+	outline:none;
+}
+
+.up-arrow{
+	float:right;
+	margin-top:-2%;
+	border:none;
+	background-color:transparent;
+	background-image: url("../images/arrow_up.png");
+	background-repeat: no-repeat;
+	background-size:25px 25px;
+	width:25px;
+	height:25px;
+	cursor:pointer;
+	outline:none;
 }

@@ -12,13 +12,13 @@ class Header extends React.Component{
 	}
 
 	componentDidMount(){
-		this.timeID = setInterval(()=>{
-			this.tick()
-		},1000);
+		// this.timeID = setInterval(()=>{
+		// 	this.tick()
+		// },1000);
 	}
 
 	componentWillUnMount() {
-		clearInterval(this.timeID);
+		// clearInterval(this.timeID);
 	}
 
 	render(){
@@ -26,11 +26,10 @@ class Header extends React.Component{
 			<div id="header">
 			 <ul>
 			   <li>
-			   <p>{this.getWeekDay()}</p>
-			   <p>{this.state.date.toLocaleDateString()} {this.state.date.toLocaleTimeString()}</p>
+			   <p>{this.state.date.toLocaleDateString()} {this.getWeekDay()}</p>
 			   </li>
 			   <li><h2>{this.props.title}</h2></li>
-			   <li><Link to={this.props.path}><button className={this.props.fn}></button></Link></li>
+			   <li><Link to={this.props.path}><button className={this.props.fn}>+</button></Link></li>
 			 </ul>
 			</div>
 		)

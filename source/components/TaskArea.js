@@ -5,7 +5,9 @@ class TaskArea extends React.Component{
 	constructor(props){
 		super(props);
 		this.onTaskClick = this.onTaskClick.bind(this);
-		this.state = {tasks: []};
+		this.state = {tasks: [],
+					   unfolded:{}
+		             };
 	}
 
 	componentDidMount(){
@@ -20,10 +22,21 @@ class TaskArea extends React.Component{
 		var index = event.target.dataset.key;
 		var tasks =  parentIndex === undefined? this.state.tasks[index]:this.state.tasks[parentIndex].subTasks[index]; // this.state.task is a container of tasks model
 		if(parentIndex ===undefined && tasks.subTasksAmount >0){
-			console.log("foldout");
+			if(this.state.unfolded[index]===undefined){
+				this.state.unfolded[index] = true;
+			}
+			else{
+				this.state.unfolded[index]=!this.state.unfolded[index];
+			}
 		}
 		else{
-		  tasks.completed = !tasks.completed;
+		  if(parentIndex !== undefined){
+		  	tasks.completed = !tasks.completed;
+		  	this.state.tasks[parentIndex].setCompleted();
+		  }
+		  else{
+		  	this.state.tasks[index].setCompleted();
+		  }
 		  window.localStorage.setItem("tasks", JSON.stringify(this.state.tasks));
 		}
 		this.forceUpdate();
@@ -31,24 +44,37 @@ class TaskArea extends React.Component{
 
 	render(){
 		var callback = this.onTaskClick;
+		var unfolded = this.state.unfolded;
 		return (
-				<ul className="tasks-area">
+			<div className="tasks-area">
+				<ul className="tasks">
 					{
+						
 						this.state.tasks.map(function(item,index){
             				return <li key={index} data-key={index} 
             				           onClick={callback} 
             				           className={item.completed ==true? "completed":""}>{item.name}
-            				           { 
-            				        
-            				           	   function(parentIndex){			           	   	
-            				           	   	if(item.subTasksAmount >0){   				           	   		
-            				           	   	  return <ul>
-            				           	   	  			{item.subTasks.map(function(task,index){          				         
-            				           	   	  				 return <li key={index} data-key={index} data-parent-index={parentIndex} onClick={callback}>{task.name}</li>
-            				           	   	  				})}
-            				           	   	  		</ul>
+            				           {
+            				           	function(parentIndex,unfolded){			           	   	
+            				           	   	if(item.subTasksAmount >0){
+            				           	   	var clickParent = function(event){
+            				           	   		event.stopPropagation();
+            				           	   		event.preventDefault();
+            				           	   		event.target.parentElement.parentElement.click();
             				           	   	}
-            				           	   }(index)
+            				           	   	var name = unfolded[parentIndex]=== true? "unfolded": "folded"; 				           	   		
+            				           	   	  return (<div><button onClick={clickParent}className={name==="unfolded"? "up-arrow":"down-arrow"}></button><ul className={name}>
+            				           	   	  			{item.subTasks.map(function(task,index){          				         
+            				           	   	  				 return <li key={index} data-key={index} 
+            				           	   	  				 			data-parent-index={parentIndex} 
+            				           	   	  				 			onClick={callback}
+            				           	   	  				 			className={task.completed == true? "completed":""}>
+            				           	   	  				 			{task.name}
+            				           	   	  				 		</li>
+            				           	   	  				})}
+            				           	   	  		</ul></div>)
+            				           	   	}
+            				           	   }(index,unfolded)
             				                    			            				           	
             				           	 
             				       		}
@@ -56,6 +82,7 @@ class TaskArea extends React.Component{
           				})
 			  		}
 				</ul>
+			</div>
 		)
 	}
 }
