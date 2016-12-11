@@ -38,7 +38,7 @@
 }
 
 .tasks>li:nth-child(odd){
-	
+
 }
 
 .unfolded{
@@ -101,5 +101,13 @@
 	font-weight:bolder;
 	color:white;
 	cursor:pointer;
+	outline:none;
+}
+
+#search{
+	width:60%;
+	margin-left:15%;
+	font-size:24px;
+	border:3px solid black;
 	outline:none;
 }

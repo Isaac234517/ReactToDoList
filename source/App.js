@@ -28,6 +28,7 @@ class ToDoList extends React.Component{
 		return (
 			<div>
 				<Header title="Action Items" fn="create" path="/CreateTaskPage" />
+				<input id="search" type="text"/>
 				<TaskArea tasks={this.getTasksFromLocalStorage()} />
 			</div>
 		)
