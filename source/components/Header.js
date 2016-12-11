@@ -9,6 +9,7 @@ class Header extends React.Component{
 			date: new Date(),
 			weekyDate: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
 			}
+		this.onDone = this.onDone.bind(this);
 	}
 
 	componentDidMount(){
@@ -21,15 +22,43 @@ class Header extends React.Component{
 		// clearInterval(this.timeID);
 	}
 
+	onDone(event){
+		this.props.done();
+	}
+
 	render(){
 		return(
-			<div id="header">
+			<div id={this.props.fn ==="create"? "header": "header2"}>
 			 <ul>
-			   <li>
-			   <p>{this.state.date.toLocaleDateString()} {this.getWeekDay()}</p>
+			   <li>{
+			   	function(obj){
+			   		if(obj.props.fn === "create"){
+			   			return <p>{obj.state.date.toLocaleDateString()} {obj.getWeekDay()}</p>
+			   		}
+			   		else{
+			   			return <Link to={obj.props.path}><button className="back"></button></Link>			   		}
+			   	}(this)
+			   }
 			   </li>
-			   <li><h2>{this.props.title}</h2></li>
-			   <li><Link to={this.props.path}><button className={this.props.fn}>+</button></Link></li>
+
+			   	 {function(obj){
+			   	 	if(obj.props.fn ==="create"){
+			   	 		 return <li><h2>{obj.props.title}</h2></li>
+			   	 	}
+			   	 }(this)}
+
+			   {function(obj){
+			   		if(obj.props.fn === "create"){
+			   		return <li><Link to={obj.props.path}><button className="create"></button></Link></li>
+			   		}
+			   }(this)}
+
+			   {function(obj){
+			   		if(obj.props.fn !=="create"){
+			   			return <li id="done"><button type="button" className="done" onClick={obj.onDone}>Done</button></li>
+			   		}	
+			   		}(this)
+				}
 			 </ul>
 			</div>
 		)

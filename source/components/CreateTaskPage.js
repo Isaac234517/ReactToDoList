@@ -47,10 +47,9 @@ class CreateTaskPage extends React.Component{
 	render(){
 		return(
 			<div>
-			  <Header title="Create" fn="back" path="/"/>
+			  <Header title="Create" fn="back" path="/" done={this.saveTask}/>
 			  <div className="show-area">
 			  	<label htmlFor="create-task-name">Task Name: </label> <input className="create-task-name" type="text" onChange={this.onTaskNameChange}></input>
-			  	<button type="button" onClick={this.createSubTask}>create sub task</button>
 			  	<ul>
 			  	{
 			  		this.state.tasks.subTasks.map((item, index)=>{
@@ -58,7 +57,7 @@ class CreateTaskPage extends React.Component{
 			  		})
 			  	}
 			  	</ul>
-			  	<button type="button" className="create-task" onClick={this.saveTask}>Create Task</button>
+			  	<button className="plus" type="button" onClick={this.createSubTask}>+</button>
 			  </div>
 			</div>
 		)

@@ -4,6 +4,15 @@
 	text-align:center;
 }
 
+#header2 ul{
+	list-style: none;
+	margin-left: -1%;
+}
+
+#header2 ul li{
+	display: inline-block;
+}
+
 #header ul{
 	list-style: none;
 	margin-left: -1%;
@@ -21,11 +30,50 @@
 }
 
 .create{
-	/*border: 2px solid green;*/
-	/*background: url("../images/create.png") no-repeat;*/
-	border: solid none;
+	background: url("../images/plus.png") no-repeat;
+	border: none;
+	background-color: transparent;
 	height: 26px;
 	margin-left: 40%;
 	width: 26px;
 	cursor: pointer;
+	background-size: 26px 26px;
+	padding-bottom: 5px;
+}
+
+.back{
+	background-image: url("../images/arrow_left.png");
+	background-repeat: no-repeat;
+	background-size:50px 50px;
+	width:50px;
+	height:50px;
+	cursor:pointer;
+	outline:none;
+	background-color:transparent;
+	border:none;
+}
+
+.create-task-name{
+	border: 0;
+	background: transparent;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+	width: 30%;
+	outline:0 ;
+	font-size:24px;
+	margin-bottom:30px;
+}
+.done{
+	float:right;
+	background-color:transparent;
+	cursor:pointer;
+	font-size:24px;
+	outline:none;
+	border:none;
+}
+
+#done{
+	float:right;
+	padding-right:40px;
+	padding-top:10px;
 }

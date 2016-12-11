@@ -27,7 +27,7 @@ class ToDoList extends React.Component{
 	render(){
 		return (
 			<div>
-				<Header title="List" fn="create" path="/CreateTaskPage" />
+				<Header title="Action Items" fn="create" path="/CreateTaskPage" />
 				<TaskArea tasks={this.getTasksFromLocalStorage()} />
 			</div>
 		)
