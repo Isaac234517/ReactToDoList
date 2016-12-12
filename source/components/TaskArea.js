@@ -45,6 +45,7 @@ class TaskArea extends React.Component{
 	render(){
 		var callback = this.onTaskClick;
 		var unfolded = this.state.unfolded;
+		var searchText = this.props.searchText;
 		return (
 			<div className="tasks-area">
 				<ul className="tasks">
@@ -53,7 +54,7 @@ class TaskArea extends React.Component{
 						this.state.tasks.map(function(item,index){
             				return <li key={index} data-key={index} 
             				           onClick={callback} 
-            				           className={item.completed ==true? "completed":""}>{item.name}
+            				           className={(item.completed ==true? "completed ":" ") + (item.name.toLowerCase().includes(searchText.toLowerCase()) == true?"hide": "folded")}>{item.name}
             				           {
             				           	function(parentIndex,unfolded){			           	   	
             				           	   	if(item.subTasksAmount >0){

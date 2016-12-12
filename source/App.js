@@ -9,6 +9,8 @@ import CreateTaskPage from './components/CreateTaskPage.js'
 class ToDoList extends React.Component{
 	constructor(props){
 		super(props);
+		this.searchTask = this.searchTask.bind(this);
+		this.state = {searchText: ""};
 	}
 
 	getTasksFromLocalStorage(){
@@ -24,12 +26,20 @@ class ToDoList extends React.Component{
 		}
 	}
 
+	searchTask(event){
+		var text = event.target.value;
+	console.log(text);
+		this.setState({
+			searchText: text
+		});
+	}
+
 	render(){
 		return (
 			<div>
 				<Header title="Action Items" fn="create" path="/CreateTaskPage" />
-				<input id="search" type="text"/>
-				<TaskArea tasks={this.getTasksFromLocalStorage()} />
+				<input id="search" type="text" onChange={this.searchTask}/>
+				<TaskArea tasks={this.getTasksFromLocalStorage()} searchText={this.state.searchText} />
 			</div>
 		)
 	}

@@ -11,6 +11,11 @@ class Tasks extends Task {
     this.subTasksAmount = this.subTasks.length;
   }
 
+  setSubTasks(subTasks){
+    this.subTasks = subTasks;
+    this.subTasksAmount = this.subTasks.length;
+  }
+
   setCompleted(){
     if(this.subTasksAmount > 0){
       for(var i=0; i < this.subTasksAmount; i++){

@@ -38,10 +38,12 @@ class CreateTaskPage extends React.Component{
 			else{
 				tasks = JSON.parse(tasks);
 			}
+			this.state.tasks.setSubTasks(this.state.tasks.subTasks.filter(function(item){
+				return item.name !== ""
+			}));
 			tasks.push(this.state.tasks);
 			window.localStorage.setItem("tasks", JSON.stringify(tasks));
 		}
-		window.location.href ="/";
 	}
 
 	render(){

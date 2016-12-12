@@ -55,7 +55,7 @@ class Header extends React.Component{
 
 			   {function(obj){
 			   		if(obj.props.fn !=="create"){
-			   			return <li id="done"><button type="button" className="done" onClick={obj.onDone}>Done</button></li>
+			   			return <li id="done"><Link to={obj.props.path}><button type="button" className="done" onClick={obj.onDone}>Done</button></Link></li>
 			   		}	
 			   		}(this)
 				}
