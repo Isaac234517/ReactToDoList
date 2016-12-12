@@ -5,6 +5,7 @@ class TaskArea extends React.Component{
 	constructor(props){
 		super(props);
 		this.onTaskClick = this.onTaskClick.bind(this);
+		this.deleteTask = this.deleteTask.bind(this);
 		this.state = {tasks: [],
 					   unfolded:{}
 		             };
@@ -42,10 +43,20 @@ class TaskArea extends React.Component{
 		this.forceUpdate();
 	}
 
+	deleteTask(event){
+		event.stopPropagation();
+		var index = event.target.parentElement.dataset.key;
+		this.state.tasks.splice(index,1);
+		this.state.unfolded = {};
+		window.localStorage.setItem("tasks", JSON.stringify(this.state.tasks));
+		this.forceUpdate();
+	}
+
 	render(){
 		var callback = this.onTaskClick;
 		var unfolded = this.state.unfolded;
 		var searchText = this.props.searchText;
+		var deleteTask = this.deleteTask;
 		return (
 			<div className="tasks-area">
 				<ul className="tasks">
@@ -55,6 +66,7 @@ class TaskArea extends React.Component{
             				return <li key={index} data-key={index} 
             				           onClick={callback} 
             				           className={(item.completed ==true? "completed ":" ") + (item.name.toLowerCase().includes(searchText.toLowerCase()) == true?"hide": "folded")}>{item.name}
+            				           <button className="delete" onClick={deleteTask}></button>
             				           {
             				           	function(parentIndex,unfolded){			           	   	
             				           	   	if(item.subTasksAmount >0){
@@ -64,7 +76,9 @@ class TaskArea extends React.Component{
             				           	   		event.target.parentElement.parentElement.click();
             				           	   	}
             				           	   	var name = unfolded[parentIndex]=== true? "unfolded": "folded"; 				           	   		
-            				           	   	  return (<div><button onClick={clickParent}className={name==="unfolded"? "up-arrow":"down-arrow"}></button><ul className={name}>
+            				           	   	  return (<div>
+            				           	   	  			<button onClick={clickParent}className={name==="unfolded"? "up-arrow":"down-arrow"}></button>
+            				           	   	  			<ul className={name}>
             				           	   	  			{item.subTasks.map(function(task,index){          				         
             				           	   	  				 return <li key={index} data-key={index} 
             				           	   	  				 			data-parent-index={parentIndex} 

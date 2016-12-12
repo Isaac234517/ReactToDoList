@@ -85,6 +85,20 @@
 	outline:none;
 }
 
+.delete{
+	float:right;
+	margin-right:4%;
+	width:25px;
+	height:25px;
+	background-size: 25px 25px;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	border:none;
+	cursor: pointer;
+	outline:none;
+	background-image: url("../images/delete.png");
+}
+
 .plus{
 	border-radius: 50%;
     border:none;

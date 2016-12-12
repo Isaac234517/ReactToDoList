@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
 require ('../css/header.css');
-require ('../css/button.css');
 class Header extends React.Component{
 	constructor(props){
 		super(props);
@@ -10,16 +9,6 @@ class Header extends React.Component{
 			weekyDate: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
 			}
 		this.onDone = this.onDone.bind(this);
-	}
-
-	componentDidMount(){
-		// this.timeID = setInterval(()=>{
-		// 	this.tick()
-		// },1000);
-	}
-
-	componentWillUnMount() {
-		// clearInterval(this.timeID);
 	}
 
 	onDone(event){
