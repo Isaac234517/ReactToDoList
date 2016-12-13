@@ -28,7 +28,6 @@ class ToDoList extends React.Component{
 
 	searchTask(event){
 		var text = event.target.value;
-	console.log(text);
 		this.setState({
 			searchText: text
 		});
@@ -37,7 +36,7 @@ class ToDoList extends React.Component{
 	render(){
 		return (
 			<div>
-				<Header title="Action Items" fn="create" path="/CreateTaskPage" />
+				<Header title="ToDo Items" fn="create" path="/CreateTaskPage" />
 				<input id="search" type="text" onChange={this.searchTask}/>
 				<TaskArea tasks={this.getTasksFromLocalStorage()} searchText={this.state.searchText} />
 			</div>
